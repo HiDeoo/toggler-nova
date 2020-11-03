@@ -1,5 +1,5 @@
-nova.commands.register("toggler.test", test);
+nova.commands.register('toggler.test', test)
 
 function test() {
-  console.log("plop")
+  console.log('plop')
 }
