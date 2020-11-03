@@ -1,0 +1,19 @@
+{
+  "name": "toggler-nova",
+  "version": "0.1.0",
+  "repository": "https://github.com/HiDeoo/toggler-nova.git",
+  "author": "HiDeoo",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "16.0.0",
+    "@types/node": "14.14.6",
+    "@types/nova-editor-node": "2.0.0",
+    "rollup": "2.33.1",
+    "rollup-plugin-typescript2": "0.29.0",
+    "typescript": "4.0.5"
+  }
+}

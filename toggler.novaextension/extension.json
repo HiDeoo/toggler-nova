@@ -8,10 +8,6 @@
     
     "main": "main.js",
     
-    "activationEvents": [
-        "onLanguage:html"
-    ],
-    
     "entitlements": {
         
     },
@@ -19,12 +15,8 @@
     "commands": {
         "extensions": [
             {
-                "title": "Open URL",
-                "command": "toggler.openURL"
-            },
-            {
-                "title": "Run External Tool",
-                "command": "toggler.runExternalTool"
+                "title": "Test extension",
+                "command": "toggler.test"
             }
         ]
     },
