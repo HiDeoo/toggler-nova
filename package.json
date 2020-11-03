@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "yarn build -w",
     "build": "rollup -c rollup.config.js"
   },
   "devDependencies": {
