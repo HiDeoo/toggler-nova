@@ -1,9 +1,11 @@
+import { Array, Static, String } from 'runtypes'
+
 import defaults from './defaults'
 
 /**
  * Toggler configuration.
  */
-let configuration: ToggleConfiguration[] | undefined
+let configuration: ToggleConfiguration | undefined
 
 nova.commands.register('toggler.toggle', () => {
   loadConfiguration()
@@ -19,12 +21,13 @@ function loadConfiguration() {
 
   const useDefaultToggles = nova.config.get('toggler.useDefaultToggles', 'boolean') ?? true
 
-  let customToggles: ToggleConfiguration[] = []
+  let customToggles: ToggleConfiguration = []
   const customTogglesStr = nova.config.get('toggler.toggles', 'string') ?? '[]'
 
   try {
-    // TODO Validate & type this
-    customToggles = JSON.parse(customTogglesStr) as string[][]
+    const parsedCustomToggles: unknown = JSON.parse(customTogglesStr)
+
+    customToggles = ToggleConfiguration.check(parsedCustomToggles)
   } catch (error) {
     // TODO
     console.log('error ', error)
@@ -34,6 +37,10 @@ function loadConfiguration() {
 }
 
 /**
- * Toggle configuration.
+ * Toggle types.
  */
-type ToggleConfiguration = string[]
+const Toggle = Array(String)
+type Toggle = Static<typeof Toggle>
+
+const ToggleConfiguration = Array(Toggle)
+type ToggleConfiguration = Static<typeof ToggleConfiguration>
