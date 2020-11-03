@@ -1,12 +1,12 @@
 module.exports = {
   root: true,
-  env: { node: true },
+  env: { 'nova/nova': true },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'nova'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
