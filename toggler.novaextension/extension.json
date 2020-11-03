@@ -1,0 +1,40 @@
+{
+    "identifier": "hideoo.toggler",
+    "name": "Toggler",
+    "organization": "HiDeoo",
+    "description": "Lorem ipsum, dolor sit amet.",
+    "version": "1.0",
+    "categories": ["commands"],
+    
+    "main": "main.js",
+    
+    "activationEvents": [
+        "onLanguage:html"
+    ],
+    
+    "entitlements": {
+        
+    },
+    
+    "commands": {
+        "extensions": [
+            {
+                "title": "Open URL",
+                "command": "toggler.openURL"
+            },
+            {
+                "title": "Run External Tool",
+                "command": "toggler.runExternalTool"
+            }
+        ]
+    },
+    
+    "config": [
+        {
+            "key": "toggler.foobar",
+            "title": "Foo the bar",
+            "type": "boolean",
+            "default": false
+        }
+    ]
+}
