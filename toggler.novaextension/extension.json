@@ -1,32 +1,42 @@
 {
-    "identifier": "hideoo.toggler",
-    "name": "Toggler",
-    "organization": "HiDeoo",
-    "description": "Lorem ipsum, dolor sit amet.",
-    "version": "1.0",
-    "categories": ["commands"],
-    
-    "main": "main.js",
-    
-    "entitlements": {
-        
-    },
-    
-    "commands": {
-        "extensions": [
-            {
-                "title": "Test extension",
-                "command": "toggler.test"
-            }
-        ]
-    },
-    
-    "config": [
-        {
-            "key": "toggler.foobar",
-            "title": "Foo the bar",
-            "type": "boolean",
-            "default": false
-        }
+  "identifier": "hideoo.toggler",
+  "name": "Toggler",
+  "organization": "HiDeoo",
+  "description": "Lorem ipsum, dolor sit amet.",
+  "version": "0.1.0",
+  "categories": ["commands"],
+
+  "main": "main.js",
+
+  "entitlements": {},
+
+  "commands": {
+    "extensions": [
+      {
+        "title": "Toggle",
+        "command": "toggler.toggle",
+        "when": "editorHasFocus"
+      }
     ]
+  },
+
+  "config": [
+    {
+      "key": "toggler.toggles",
+      "type": "text",
+      "title": "Custom toggles",
+      "description": "// TODO",
+      "link": "// TODO",
+      "default": "[\n\t[\"absolute\", \"relative\"],\n\t[\"high\", \"low\"]\n]",
+      "command": "// TODO validate? - hidden command?"
+    },
+    {
+      "key": "toggler.useDefaultToggles",
+      "type": "boolean",
+      "title": "Use default toggles",
+      "description": "Toggler is bundled with some default toggles merged with your custom ones that you can disable if they don't fit your preferences.",
+      "link": "// TODO",
+      "default": true
+    }
+  ]
 }
