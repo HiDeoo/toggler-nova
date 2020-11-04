@@ -11,7 +11,7 @@
   "entitlements": {},
 
   "commands": {
-    "extensions": [
+    "editor": [
       {
         "title": "Toggle",
         "command": "toggler.toggle",
