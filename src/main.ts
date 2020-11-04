@@ -8,13 +8,13 @@ import defaults from './defaults'
 let configuration: ToggleConfiguration | undefined
 
 nova.commands.register('toggler.toggle', () => {
-  loadConfiguration()
+  void loadConfiguration()
 })
 
 /**
  * Loads the configuration.
  */
-function loadConfiguration() {
+async function loadConfiguration() {
   if (configuration) {
     return
   }
@@ -29,8 +29,18 @@ function loadConfiguration() {
 
     customToggles = ToggleConfiguration.check(parsedCustomToggles)
   } catch (error) {
-    // TODO
-    console.log('error ', error)
+    const notificationRequest = new NotificationRequest('toggler-custom-toggles')
+
+    notificationRequest.title = 'Toggler'
+    notificationRequest.body =
+      'Could not parse custom toggles. Make sure to use the proper format in your Nova settings.'
+    notificationRequest.actions = ['Ok', 'Open Settings']
+
+    const { actionIdx } = await nova.notifications.add(notificationRequest)
+
+    if (actionIdx === 1) {
+      nova.openConfig()
+    }
   }
 
   configuration = useDefaultToggles ? customToggles.concat(defaults) : customToggles
