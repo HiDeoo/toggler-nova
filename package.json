@@ -20,6 +20,7 @@
     "eslint": "7.12.1",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-nova": "1.2.0",
+    "eslint-plugin-prettier": "3.1.4",
     "husky": ">=4",
     "lint-staged": ">=10",
     "prettier": "2.1.2",
