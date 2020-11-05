@@ -85,18 +85,28 @@ function loadConfiguration(reload = false) {
 }
 
 /**
+ * Sends a notification.
+ * @param id - The notification identifier.
+ * @param body - The notification body text.
+ * @param actions - The notification actions.
+ */
+function sendNotification(id: string, body: string, actions = ['Ok']): Promise<NotificationResponse> {
+  const notificationRequest = new NotificationRequest(id)
+
+  notificationRequest.title = 'Toggler'
+  notificationRequest.body = body
+  notificationRequest.actions = actions
+
+  return nova.notifications.add(notificationRequest)
+}
+
+/**
  * Sends a notification including a button to open the extension settings.
  * @param id - The notification identifier.
  * @param body - The notification body text.
  */
 async function sendNotificationWithSettingsLink(id: string, body: string) {
-  const notificationRequest = new NotificationRequest(id)
-
-  notificationRequest.title = 'Toggler'
-  notificationRequest.body = body
-  notificationRequest.actions = ['Ok', 'Open Settings']
-
-  const { actionIdx } = await nova.notifications.add(notificationRequest)
+  const { actionIdx } = await sendNotification(id, body, ['Ok', 'Open Settings'])
 
   if (actionIdx === 1) {
     nova.openConfig()
