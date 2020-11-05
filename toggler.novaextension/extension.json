@@ -15,6 +15,7 @@
       {
         "title": "Toggle",
         "command": "toggler.toggle",
+        "shortcut": "ctrl-r",
         "when": "editorHasFocus"
       }
     ]
