@@ -29,9 +29,9 @@ const configurationListeners: Disposable[] = []
  * Toggle command.
  */
 nova.commands.register('toggler.toggle', (editor: TextEditor) => {
-  void loadConfiguration()
+  loadConfiguration()
 
-  void toggle(editor)
+  toggle(editor)
 })
 
 /**
@@ -39,11 +39,11 @@ nova.commands.register('toggler.toggle', (editor: TextEditor) => {
  */
 export function activate(): void {
   nova.config.onDidChange(TogglerConfiguration.Toggles, () => {
-    void loadConfiguration(true)
+    loadConfiguration(true)
   })
 
   nova.config.onDidChange(TogglerConfiguration.UseDefaultToggles, () => {
-    void loadConfiguration(true)
+    loadConfiguration(true)
   })
 }
 
@@ -60,7 +60,7 @@ export function deactivate(): void {
  * Loads the configuration.
  * @param reload - Defines if the configuration should be reloaded or not.
  */
-async function loadConfiguration(reload = false) {
+function loadConfiguration(reload = false) {
   if (configuration && !reload) {
     return
   }
@@ -75,42 +75,59 @@ async function loadConfiguration(reload = false) {
 
     customToggles = ToggleConfiguration.check(parsedCustomToggles)
   } catch (error) {
-    const notificationRequest = new NotificationRequest('toggler-custom-toggles')
-
-    notificationRequest.title = 'Toggler'
-    notificationRequest.body =
+    sendNotificationWithSettingsLink(
       'Could not parse custom toggles. Make sure to use the proper format in your Nova settings.'
-    notificationRequest.actions = ['Ok', 'Open Settings']
-
-    const { actionIdx } = await nova.notifications.add(notificationRequest)
-
-    if (actionIdx === 1) {
-      nova.openConfig()
-    }
+    )
   }
 
   configuration = useDefaultToggles ? customToggles.concat(defaults) : customToggles
 }
 
 /**
+ * Sends a notification including a button to open the extension settings.
+ * @param body - The notification body text.
+ */
+async function sendNotificationWithSettingsLink(body: string) {
+  const notificationRequest = new NotificationRequest('toggler-custom-toggles')
+
+  notificationRequest.title = 'Toggler'
+  notificationRequest.body = body
+  notificationRequest.actions = ['Ok', 'Open Settings']
+
+  const { actionIdx } = await nova.notifications.add(notificationRequest)
+
+  if (actionIdx === 1) {
+    nova.openConfig()
+  }
+}
+
+/**
  * Toggles words.
  * @param editor - The TextEditor instance.
  */
-function toggle(editor: TextEditor) {
+async function toggle(editor: TextEditor) {
   if (!TextEditor.isTextEditor(editor)) {
     return
   }
 
-  return editor.edit((edit) => {
+  let didFail = false
+
+  await editor.edit((edit) => {
     editor.selectedRanges.forEach((range) => {
       const toggle = getToggle(editor, range)
 
       if (toggle.new) {
         edit.delete(toggle.range ?? range)
         edit.insert(toggle.range?.start ?? range.start, toggle.new)
+      } else {
+        didFail = true
       }
     })
   })
+
+  if (didFail) {
+    sendNotificationWithSettingsLink('Could not find a toggle. You can add one in your Nova settings.')
+  }
 }
 
 /**
