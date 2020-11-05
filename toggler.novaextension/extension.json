@@ -2,13 +2,15 @@
   "identifier": "hideoo.toggler",
   "name": "Toggler",
   "organization": "HiDeoo",
-  "description": "Lorem ipsum, dolor sit amet.",
+  "description": "Toggle words and symbols",
   "version": "0.1.0",
+  "license": "MIT",
   "categories": ["commands"],
+  "bugs": "https://github.com/HiDeoo/toggler-nova/issues",
+  "homepage": "https://github.com/HiDeoo/toggler-nova",
+  "repository": "https://github.com/HiDeoo/toggler-nova",
 
   "main": "main.js",
-
-  "entitlements": {},
 
   "commands": {
     "editor": [
