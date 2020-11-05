@@ -34,17 +34,16 @@
       "key": "toggler.toggles",
       "type": "text",
       "title": "Custom toggles",
-      "description": "// TODO",
-      "link": "// TODO",
-      "default": "[\n\t[\"absolute\", \"relative\"],\n\t[\"high\", \"low\"]\n]",
-      "command": "// TODO validate? - hidden command?"
+      "description": "A JSON array of toggles. Click the Help button to see examples.",
+      "link": "https://github.com/HiDeoo/toggler-nova/blob/main/src/defaults.ts",
+      "default": "[\n\t[\"absolute\", \"relative\"],\n\t[\"high\", \"low\"]\n]"
     },
     {
       "key": "toggler.useDefaultToggles",
       "type": "boolean",
       "title": "Use default toggles",
       "description": "Toggler is bundled with some default toggles merged with your custom ones that you can disable if they don't fit your preferences.",
-      "link": "// TODO",
+      "link": "https://github.com/HiDeoo/toggler-nova/blob/main/src/defaults.ts",
       "default": true
     }
   ]
