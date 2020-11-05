@@ -76,6 +76,7 @@ function loadConfiguration(reload = false) {
     customToggles = ToggleConfiguration.check(parsedCustomToggles)
   } catch (error) {
     sendNotificationWithSettingsLink(
+      'toggler-error-parse',
       'Could not parse custom toggles. Make sure to use the proper format in your Nova settings.'
     )
   }
@@ -85,10 +86,11 @@ function loadConfiguration(reload = false) {
 
 /**
  * Sends a notification including a button to open the extension settings.
+ * @param id - The notification identifier.
  * @param body - The notification body text.
  */
-async function sendNotificationWithSettingsLink(body: string) {
-  const notificationRequest = new NotificationRequest('toggler-custom-toggles')
+async function sendNotificationWithSettingsLink(id: string, body: string) {
+  const notificationRequest = new NotificationRequest(id)
 
   notificationRequest.title = 'Toggler'
   notificationRequest.body = body
@@ -126,7 +128,10 @@ async function toggle(editor: TextEditor) {
   })
 
   if (didFail) {
-    sendNotificationWithSettingsLink('Could not find a toggle. You can add one in your Nova settings.')
+    sendNotificationWithSettingsLink(
+      'toggler-error-not-found',
+      'Could not find a toggle. You can add one in your Nova settings.'
+    )
   }
 }
 
