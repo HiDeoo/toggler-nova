@@ -18,6 +18,12 @@
         "shortcut": "ctrl-r",
         "when": "editorHasFocus"
       }
+    ],
+    "extensions": [
+      {
+        "title": "Customize Toggles",
+        "command": "toggler.settings"
+      }
     ]
   },
 

@@ -35,6 +35,13 @@ nova.commands.register('toggler.toggle', (editor: TextEditor) => {
 })
 
 /**
+ * Command to customize toggles.
+ */
+nova.commands.register('toggler.settings', () => {
+  nova.openConfig()
+})
+
+/**
  * Triggered when the extension is activated.
  */
 export function activate(): void {
