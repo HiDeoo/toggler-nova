@@ -135,8 +135,6 @@ async function toggle(editor: TextEditor) {
         } else {
           didFail = true
         }
-
-        throw new Error('plop')
       })
     })
   } catch (error) {
