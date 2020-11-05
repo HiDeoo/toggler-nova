@@ -124,18 +124,26 @@ async function toggle(editor: TextEditor) {
 
   let didFail = false
 
-  await editor.edit((edit) => {
-    editor.selectedRanges.forEach((range) => {
-      const toggle = getToggle(editor, range)
+  try {
+    await editor.edit((edit) => {
+      editor.selectedRanges.forEach((range) => {
+        const toggle = getToggle(editor, range)
 
-      if (toggle.new) {
-        edit.delete(toggle.range ?? range)
-        edit.insert(toggle.range?.start ?? range.start, toggle.new)
-      } else {
-        didFail = true
-      }
+        if (toggle.new) {
+          edit.delete(toggle.range ?? range)
+          edit.insert(toggle.range?.start ?? range.start, toggle.new)
+        } else {
+          didFail = true
+        }
+
+        throw new Error('plop')
+      })
     })
-  })
+  } catch (error) {
+    sendNotification('toggler-error-edit', 'Something went wrong while trying to toggle.')
+
+    return
+  }
 
   if (didFail) {
     sendNotificationWithSettingsLink(
