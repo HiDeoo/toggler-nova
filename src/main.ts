@@ -132,8 +132,10 @@ async function toggle(editor: TextEditor) {
   let didFail = false
 
   try {
+    const ranges = editor.selectedRanges.reverse()
+
     await editor.edit((edit) => {
-      editor.selectedRanges.forEach((range) => {
+      ranges.forEach((range) => {
         const toggle = getToggle(editor, range)
 
         if (toggle.new) {
@@ -176,8 +178,10 @@ function getToggle(editor: TextEditor, range: Range): ToggleResult {
     return result
   }
 
+  let lineRange: Range | null = null
+
   if (!selected) {
-    const lineRange = editor.getLineRangeForRange(range)
+    lineRange = editor.getLineRangeForRange(range)
     lineText = editor.getTextInRange(lineRange)
   }
 
@@ -188,13 +192,13 @@ function getToggle(editor: TextEditor, range: Range): ToggleResult {
       const currentWord = words[j]
       const nextWordIndex = (j + 1) % words.length
 
-      if (!selected && lineText) {
+      if (!selected && lineText && lineRange) {
         const regexp = new RegExp(escapeStringRegExp(currentWord), 'ig')
 
         let match
 
         while ((match = regexp.exec(lineText)) !== null) {
-          const matchRange = new Range(match.index, regexp.lastIndex)
+          const matchRange = new Range(lineRange.start + match.index, lineRange.start + regexp.lastIndex)
 
           if (
             matchRange.containsRange(range) === true ||
