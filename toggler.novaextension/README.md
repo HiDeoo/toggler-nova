@@ -1,72 +1,192 @@
-<!--
-👋 Hello! As Nova users browse the extensions library, a good README can help them understand what your extension does, how it works, and what setup or configuration it may require.
+<div align="center">
+  <h1>Toggler 🖇️</h1>
+  <p>Toggle words and symbols in Nova using a user defined configuration</p>
+</div>
 
-Not every extension will need every item described below. Use your best judgement when deciding which parts to keep to provide the best experience for your new users.
+<div align="center">
+  <a href="https://github.com/HiDeoo/toggler-nova/actions?query=workflow%3Aintegration"><img alt="Integration Status" src="https://img.shields.io/github/workflow/status/HiDeoo/toggler-nova/integration"></a>
+  <a href="https://david-dm.org/HiDeoo/toggler-nova"><img alt="Dependency Status" src="https://david-dm.org/HiDeoo/toggler-nova.svg"></a>
+  <br /><br />
+</div>
 
-💡 Quick Tip! As you edit this README template, you can preview your changes by selecting **Extensions → Activate Project as Extension**, opening the Extension Library, and selecting "Toggler" in the sidebar.
+![Screenshot of the Toggler Extension](https://i.imgur.com/ZrGjqNa.gif)
 
-Let's get started!
--->
+[Changelog](https://github.com/HiDeoo/toggler-nova/blob/main/toggler.novaextension/CHANGELOG.md)
 
-<!--
-🎈 Include a brief description of the features your extension provides. For example:
--->
+This is the official port of the [Atom package](https://atom.io/packages/toggler) and [Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=hideoo.toggler) of the same name.
 
-**Toggler** provides integration with **A Helpful Tool**, including the most important feature, something that's really helpful, and _a little-known secret!_
+## Features
 
-<!--
-🎈 It can also be helpful to include a screenshot or GIF showing your extension in action:
--->
-
-![](https://nova.app/images/en/dark/editor.png)
-
-## Requirements
-
-<!--
-🎈 If your extension depends on external processes or tools that users will need to have, it's helpful to list those and provide links to their installers:
--->
-
-Toggler requires some additional tools to be installed on your Mac:
-
-- [Node.js 8.2.0](https://nodejs.org) and NPM 5.2.0 or newer
-
-<!--
-✨ Providing tips, tricks, or other guides for installing or configuring external dependencies can go a long way toward helping your users have a good setup experience:
--->
-
-> To install the current stable version of Node, click the "Recommended for Most Users" button to begin the download. When that completes, double-click the **.pkg** installer to begin installation.
+- **Easily user customizable.**
+- Maintain word case.
+- Multiple toggles support.
+- Multiple cursors support.
+- Multiple selections support.
+- No dependency.
 
 ## Usage
 
-<!--
-🎈 If users will interact with your extension manually, describe those options:
--->
+Set your cursor on a word or select a word and press the associated keybinding (`Ctrl` + `r` by default).
 
-To run Toggler:
+You can also use the Nova Command Palette and choose the `Toggle` command, or use the `Toggle` action in a context menu.
 
-- Select the **Editor → Toggler** menu item; or
-- Open the command palette and type `Toggler`
+## Configuration.
 
-<!--
-🎈 Alternatively, if your extension runs automatically (as in the case of a validator), consider showing users what they can expect to see:
--->
+You can customize the default configuration directly in your Nova settings:
 
-Toggler runs any time you open a local project, automatically lints all open files, then reports errors and warnings in Nova's **Issues** sidebar and the editor gutter:
+```json
+[
+  ["custom_1", "custom_2"],
+  ["custom_3", "custom_4"]
+]
+```
 
-![](https://nova.app/images/en/light/tools/sidebars.png)
+Toggler is bundled with these default toggles:
 
-### Configuration
+```json
+[
+  ["absolute", "relative"],
+  ["high", "low"],
+  ["horizontal", "vertical"],
+  ["inner", "outer"],
+  ["left", "right"],
+  ["top", "bottom"],
 
-<!--
-🎈 If your extension offers global- or workspace-scoped preferences, consider pointing users toward those settings. For example:
--->
+  ["black", "white"],
+  ["gray", "maroon", "red", "purple", "fuchsia", "green", "yellow", "blue", "aqua"],
 
-To configure global preferences, open **Extensions → Extension Library...** then select Toggler's **Preferences** tab.
+  ["const", "let", "var"],
+  ["import", "export"],
+  ["join", "split"],
+  ["JSON.parse", "JSON.stringify"],
+  ["parse", "stringify"],
+  ["pop", "push"],
+  ["unshift", "shift"],
+  ["test.only", "test"],
 
-You can also configure preferences on a per-project basis in **Project → Project Settings...**
+  ["onAnimationStart", "onAnimationEnd"],
+  ["onChange", "onInput", "onSubmit"],
+  ["onClick", "onDoubleClick"],
+  ["onCompositionStart", "onCompositionEnd"],
+  ["onCopy", "onCut", "onPaste"],
+  ["onDragEnter", "onDragLeave"],
+  ["onDragStart", "onDragEnd"],
+  ["onFocus", "onBlur"],
+  ["onKeyDown", "onKeyUp"],
+  ["onMouseDown", "onMouseUp"],
+  ["onMouseEnter", "onMouseLeave"],
+  ["onTouchStart", "onTouchEnd"],
+  ["addEventListener", "removeEventListener"],
+  ["animationstart", "animationend"],
+  ["change", "input", "submit"],
+  ["dblclick", "click"],
+  ["compositionstart", "compositionend"],
+  ["copy", "cut", "paste"],
+  ["dragenter", "dragleave"],
+  ["dragstart", "dragend"],
+  ["focus", "blur"],
+  ["keydown", "keyup"],
+  ["mousedown", "mouseup"],
+  ["mouseenter", "mouseleave"],
+  ["touchstart", "touchend"],
 
-<!--
-👋 That's it! Happy developing!
+  ["componentDidMount", "componentDidUpdate", "componentWillUnmount"],
+  ["useState", "useEffect", "useContext", "useMemo", "useRef", "useReducer", "useCallback"],
+  ["getState", "setState"],
+  ["container", "component"],
 
-P.S. If you'd like, you can remove these comments before submitting your extension 😉
--->
+  ["atan", "tan"],
+  ["ceil", "floor"],
+  ["cos", "sin"],
+  ["Math.atan", "Math.tan"],
+  ["Math.ceil", "Math.floor"],
+  ["Math.cos", "Math.sin"],
+  ["Math.min", "Math.max"],
+  ["min", "max"],
+
+  ["deactivate", "activate"],
+  ["address", "port"],
+  ["add", "remove"],
+  ["unavailable", "available"],
+  ["background", "foreground"],
+  ["before", "after"],
+  ["client", "server"],
+  ["disconnected", "connected"],
+  ["disconnect", "connect"],
+  ["development", "production"],
+  ["dev", "prod"],
+  ["drag", "drop"],
+  ["file", "folder"],
+  ["first", "last"],
+  ["from", "to"],
+  ["get", "set"],
+  ["input", "output"],
+  ["uninstall", "install"],
+  ["all", "each", "only"],
+  ["key", "value"],
+  ["unload", "load"],
+  ["minor", "major"],
+  ["online", "offline"],
+  ["open", "close"],
+  ["parent", "child"],
+  ["positive", "negative"],
+  ["prefix", "suffix"],
+  ["previous", "next"],
+  ["public", "private"],
+  ["request", "response"],
+  ["req", "res"],
+  ["row", "column"],
+  ["short", "long"],
+  ["show", "hide"],
+  ["source", "destination"],
+  ["start", "stop"],
+  ["invalid", "valid"],
+  ["visible", "hidden"],
+  ["width", "height"],
+  ["x", "y"],
+
+  ["0", "1"],
+  ["enabled", "disabled"],
+  ["enable", "disable"],
+  ["if", "else"],
+  ["on", "off"],
+  ["true", "false"],
+  ["yes", "no"],
+
+  ["div", "span"],
+  ["head", "body"],
+  ["header", "footer"],
+  ["ol", "ul"],
+  ["tr", "td"],
+
+  ["in", "out"],
+  ["up", "down"],
+
+  ["[]", "{}"],
+  ["(", ")"],
+  ["[", "]"],
+  ["{", "}"],
+  ["'", "\"", "`"],
+
+  ["*=", "/="],
+  ["*", "/"],
+  ["&&", "||"],
+  ["&", "|"],
+  ["++", "--"],
+  ["+=", "-="],
+  ["+", "-"],
+  ["<<", ">>"],
+  ["<=", ">="],
+  ["<", ">"],
+  ["===", "!=="],
+  ["==", "!="]
+]
+```
+
+If these default toggles don't fit your preferences, you can disable them in your settings to only use custom toggles.
+
+## License
+
+Licensed under the MIT License, Copyright © HiDeoo.
+
+See [LICENSE](https://github.com/HiDeoo/toggler-nova/blob/main/LICENSE) for more information.
