@@ -1,7 +1,7 @@
 {
   "name": "toggler-nova",
+  "description": "Toggle words and symbols",
   "version": "0.1.0",
-  "repository": "https://github.com/HiDeoo/toggler-nova.git",
   "author": "HiDeoo",
   "license": "MIT",
   "private": true,
@@ -29,6 +29,21 @@
     "runtypes": "5.0.1",
     "typescript": "4.0.5"
   },
+  "keywords": [
+    "toggle",
+    "words",
+    "symbols",
+    "cursor",
+    "selection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/toggler-nova"
+  },
+  "bugs": {
+    "url": "https://github.com/HiDeoo/toggler-nova/issues"
+  },
+  "homepage": "https://github.com/HiDeoo/toggler-nova",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
